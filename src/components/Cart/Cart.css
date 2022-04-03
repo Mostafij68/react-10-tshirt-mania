@@ -1,3 +1,8 @@
-.orange{
-    background-color: orange;
+.orangered{
+    background: orangered;
+    color: aliceblue;
+}
+.green{
+    background: #169916;
+    color: aliceblue;
 }

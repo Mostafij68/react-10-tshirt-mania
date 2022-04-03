@@ -1,18 +1,15 @@
 import React from 'react';
-import MySelf from '../MySelf/MySelf'
-import Brother from '../Brother/Brother'
+import Brother from '../Brother/Brother';
+import MySelf from '../MySelf/MySelf';
 import Sister from '../Sister/Sister';
 
-const Father = ({ house, ornament }) => {
+const Father = () => {
     return (
         <div>
             <h4>Father</h4>
-            <p>house: {house}</p>
-            <div style={{display: 'flex'}}>
-                <MySelf house={house}></MySelf>
-                <Brother house={house}></Brother>
-                <Sister house={house}></Sister>
-            </div>
+            <MySelf></MySelf>
+            <Sister></Sister>
+            <Brother></Brother>
         </div>
     );
 };

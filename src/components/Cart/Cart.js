@@ -1,45 +1,41 @@
 import React from 'react';
-import './Cart.css';
+import './Cart.css'
 
-const Cart = ({cart, handleRemoveFromCart}) => {
-    // Conditional rendering options
-    // 1. Element variable
-    // 2. ternary operator condition ? true : false   
-    // 3. && Operator (shorthand)
-    // 4. || 
+const Cart = ({carts, handleRemoveFromCart}) => {
+
+    // ============ 4 ways to add Conditional Rendering in React=============
+    // => 1. element variable
     let command;
-    if(cart.length === 0 ){
-        command = <div>
-            <h5>ohh Kipta, khoroch kor</h5>
-            <p>kinos na ken</p>
-        </div>
+    if(carts.length === 0){
+        command = <p>Please add items</p>
     }
-    else if(cart.length === 1){
-        command = <p>Please add more...</p>
+    else if(carts.length === 1){
+        command = <p>Please add more items</p>
     }
     else{
-        command = <p><small>Thanks for adding item</small></p>
-    }
+        command = <p>Thanks for adding items</p>
+    };
 
 
     return (
         <div>
-            <h2>Items Selected: {cart.length}</h2>
-            
+            <h4>Items Selected: {carts.length}</h4>
+            <small>{command}</small>
             {
-                cart.map(tShirt =><p>
-                    {tShirt.name} 
-                    <button onClick={() => handleRemoveFromCart(tShirt)}>X</button>
+                carts.map(cart => <p>
+                    {cart.name}
+                    <button onClick={() => handleRemoveFromCart(cart)}>X</button>
                     </p>)
             }
-            {cart.length === 0 || <p className='orange'>YAY! You are buying</p>}
-            {cart.length === 3 && <div className='orange'>
-                <h3>Trigonal</h3>
-                <p>Tin jon ke ki gift diba</p>
-            </div>}
-            {command}
-            {cart.length !==4 ? <p>Keep adding</p> : <button>Remove ALL</button>}
-            {cart.length ===4 && <button className='orange'>Review Order</button>}
+
+            {/* => 2. ternary operator = condition ? true : false */}
+            {carts.length !== 4 ? <p>Keep adding</p> : <button>Remove all</button>}
+
+            {/* => 3. && operator (shorthand) */}
+            {carts.length > 3 && <p className='orangered'>Alert</p>}
+
+            {/* => 3. || operator (shorthand) */}
+            {carts.length === 0 || <button className='green'>Check out</button>}
         </div>
     );
 };

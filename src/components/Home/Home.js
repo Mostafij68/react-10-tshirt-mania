@@ -1,33 +1,29 @@
 import React, { useState } from 'react';
-import useTShirts from '../../hooks/useTShirts';
+import useTShirt from '../../hooks/useTShirts';
 import Cart from '../Cart/Cart';
 import TShirt from '../TShirt/TShirt';
-import './Home.css';
+import './Home.css'
 
 const Home = () => {
-    const [tShirts, setTShirts] = useTShirts();
-    const [cart, setCart] = useState([]);
-
-    const handleAddToCart = (selectedItem) => {
-        const exists = cart.find(tShirt => tShirt._id === selectedItem._id);
+    const [tShirts, setTShirts] = useTShirt([]);
+    const [carts, setCarts] = useState([])
+    const handleAddToCart = selectedItem => {
+        const exists = carts.find(tShirt => tShirt._id === selectedItem._id)
         if (!exists) {
-            const newCart = [...cart, selectedItem];
-            setCart(newCart);
+            const newCart = [...carts, selectedItem];
+            setCarts(newCart);
         }
         else{
-            alert('item already added');
+            alert('Item already added')
         }
-
-    }
-
-    const handleRemoveFromCart = (selectedItem) => {
-        const rest = cart.filter(tShirt => tShirt._id !== selectedItem._id);
-        setCart(rest);
-    }
-
+    };
+    const handleRemoveFromCart = selectedItem => {
+        const rest = carts.filter(tShirt => tShirt._id !== selectedItem._id);
+        setCarts(rest)
+    };
     return (
         <div className='home-container'>
-            <div className="tshirt-container">
+            <div className="t-shirt-container">
                 {
                     tShirts.map(tShirt => <TShirt
                         key={tShirt._id}
@@ -38,8 +34,8 @@ const Home = () => {
             </div>
             <div className="cart-container">
                 <Cart
+                    carts={carts}
                     handleRemoveFromCart={handleRemoveFromCart}
-                    cart={cart}
                 ></Cart>
             </div>
         </div>
